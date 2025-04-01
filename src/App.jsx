@@ -1,4 +1,4 @@
-const list = [
+const stories = [
   {
 title: "React",
 url: "https://react.org",
@@ -17,46 +17,55 @@ objectId: 1,
 
   }
 ]
-function App(){
+const  App = () =>  {
   return(
     <div>
     <h1>My Hacker Stories </h1>
     <Search />
     <hr />
-    <List />
+    <List list ={ stories} />
 
     </div>
     )
 }
 
-function Search(){
+const Search = () => {
+  const hundleClick = ()=> {
+    console.log("button clicked ....")
+  }
+  const handleChange = (event) => {
+    console.log(event)
+    // value of the target
+    console.log(event.target.value)
+  }
   return(
     <div>
       <label htmlFor = "search" > Search: </label>
-    <input id= "search" type="text" />
+    <input id= "search" type="text" onChange= {handleChange} />
+    <button type = "button" onClick = {hundleClick}>
+    event
+    </button>
     </div>)
 
 }
 
-function List(){
-  return(
+const List = ( props ) =>
     <ul>
       {
-        list.map(function (item){
-          return(
-          <li key={item.objectId}>
+        props.list.map((item) => (
+          <Item key= {item.objectId} item = {item} />
+        ))}
+      </ul>
+
+          const Item = (props) => (
+
+          <li>
         <span>
-        <a href= {item.url}> {item.title} </a>
+        <a href= {props.item.url}> {props.item.title} </a>
         </span>
-        <span> {item.author}</span>
-        <span> { item.num_comments } </span>
-        <span> { item.points } </span>
+        <span> {props.item.author}</span>
+        <span> { props.item.num_comments } </span>
+        <span> { props.item.points } </span>
       </li>
-      )
-        })
-
-      }
-    </ul>)
-
-}
+      );
 export default App
