@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-const stories = [
+
+const  App = () =>  {
+  const stories = [
   {
 title: "React",
 url: "https://react.org",
@@ -19,13 +21,15 @@ objectId: 1,
 
   }
 ]
-const  App = () =>  {
 
-  console.log( 'Apps Renders')
+  const hundleSearch = (event) => {
+    console.log(event.target.value)
+  }
+
   return(
     <div>
     <h1>My Hacker Stories </h1>
-    <Search />
+    <Search  onSearch = { hundleSearch }/>
     <hr />
     <List list ={ stories} />
 
@@ -33,18 +37,20 @@ const  App = () =>  {
     )
 }
 
-const Search = () => {
-  console.log( "Search Renders")
+const Search = ( props ) => {
   const hundleClick = ()=> {
     console.log("button clicked ....")
   }
    const [searchTerm, setSearchTerm] = React.useState('100')
+
   const handleChange = (event) => {
     // console.log(event)
     // value of the target
     setSearchTerm(event.target.value)
     // console.log(event.target.value)
   }
+
+props.onSearch(event)
   return(
     <div>
       <label htmlFor = "search" > Search: </label>
