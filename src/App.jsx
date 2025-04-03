@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 const stories = [
   {
 title: "React",
@@ -18,6 +20,8 @@ objectId: 1,
   }
 ]
 const  App = () =>  {
+
+  console.log( 'Apps Renders')
   return(
     <div>
     <h1>My Hacker Stories </h1>
@@ -30,18 +34,23 @@ const  App = () =>  {
 }
 
 const Search = () => {
+  console.log( "Search Renders")
   const hundleClick = ()=> {
     console.log("button clicked ....")
   }
+   const [searchTerm, setSearchTerm] = React.useState('100')
   const handleChange = (event) => {
-    console.log(event)
+    // console.log(event)
     // value of the target
-    console.log(event.target.value)
+    setSearchTerm(event.target.value)
+    // console.log(event.target.value)
   }
   return(
     <div>
       <label htmlFor = "search" > Search: </label>
     <input id= "search" type="text" onChange= {handleChange} />
+
+    <p> searching for <strong> { searchTerm } </strong> </p>
     <button type = "button" onClick = {hundleClick}>
     event
     </button>
@@ -50,6 +59,7 @@ const Search = () => {
 }
 
 const List = ( props ) =>
+
     <ul>
       {
         props.list.map((item) => (
@@ -57,9 +67,11 @@ const List = ( props ) =>
         ))}
       </ul>
 
-          const Item = (props) => (
 
-          <li>
+
+
+const Item = (props) => (
+   <li>
         <span>
         <a href= {props.item.url}> {props.item.title} </a>
         </span>
