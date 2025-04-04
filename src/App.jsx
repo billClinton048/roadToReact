@@ -25,13 +25,15 @@ objectId: 1,
 
 const [searchTerm, setSearchTerm] = React.useState(localStorage.getItem('search') || 'React');
 
-//
+//react useEffect hook
+React.useEffect(() => {
+  localStorage.setItem('search', searchTerm) }, [searchTerm])
 
 // this is a callback function that is used to communcate with the search component
   const handleSearch = (event) => {
     // console.log(event.target.value)
     setSearchTerm(event.target.value)
-    localStorage.setItem('search', event.target.value)
+
   }
 
 // filtering the stories
