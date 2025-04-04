@@ -22,12 +22,16 @@ objectId: 1,
   }
 ]
 
-const [searchTerm, setSearchTerm] = React.useState('React');
+
+const [searchTerm, setSearchTerm] = React.useState(localStorage.getItem('search') || 'React');
+
+//
 
 // this is a callback function that is used to communcate with the search component
   const handleSearch = (event) => {
     // console.log(event.target.value)
     setSearchTerm(event.target.value)
+    localStorage.setItem('search', event.target.value)
   }
 
 // filtering the stories
@@ -89,21 +93,21 @@ const List = ( { list } ) =>
 
     <ul>
       {
-        list.map((item) => (
-          <Item key= {item.objectId} item = {item} />
+        list.map(( {objectId, ...item}) => (
+          <Item key= {objectId}  {...item} />
         ))}
       </ul>
 
 // Item component
-const Item = ( { item }) => (
+const Item = ( { title, url, author, num_comments,points }) => (
 
    <li>
         <span>
-        <a href= {item.url}> {item.title} </a>
+        <a href= {url}> {title} </a>
         </span>
-        <span> {item.author}</span>
-        <span> { item.num_comments } </span>
-        <span> { item.points } </span>
+        <span> {author}</span>
+        <span> { num_comments } </span>
+        <span> { points } </span>
       </li>
 
       );
