@@ -22,7 +22,7 @@ objectId: 1,
   }
 ]
 
-const [searchTerm, setSearchTerm] = React.useState('');
+const [searchTerm, setSearchTerm] = React.useState('React');
 
 // this is a callback function that is used to communcate with the search component
   const handleSearch = (event) => {
@@ -35,12 +35,11 @@ const [searchTerm, setSearchTerm] = React.useState('');
    return story.title.toLowerCase().includes(searchTerm.toLowerCase())
 
   })
-  console.log(searchedStories)
 
   return(
     <div>
     <h1>My Hacker Stories </h1>
-    <Search  onSearch = { handleSearch }/>
+    <Search search = { searchTerm} onSearch = { handleSearch }/>
     <hr />
     <List list ={searchedStories} />
 
@@ -50,6 +49,8 @@ const [searchTerm, setSearchTerm] = React.useState('');
 
 // The search component
 const Search = ( props ) => {
+// props destructing
+  const {search, onSearch } = props;
 
   // react useStates
   // const [searchTerm, setSearchTerm] = React.useState('')
@@ -73,7 +74,7 @@ const Search = ( props ) => {
   return(
     <div>
       <label htmlFor = "search" > Search: </label>
-    <input id= "search" type="text" onChange= { props.onSearch } />
+    <input id= "search" value= {search} type="text" onChange= { onSearch } />
 
     <p> searching for <strong>{ props.searchTerm }</strong> </p>
     <button type = "button" onClick = {hundleClick}>
@@ -84,29 +85,28 @@ const Search = ( props ) => {
 }
 
 // List component
-const List = ( props ) =>
+const List = ( { list } ) =>
 
     <ul>
       {
-        props.list.map((item) => (
+        list.map((item) => (
           <Item key= {item.objectId} item = {item} />
         ))}
       </ul>
 
 // Item component
-const Item = (props) => {
+const Item = ( { item }) => (
 
-return (
    <li>
         <span>
-        <a href= {props.item.url}> {props.item.title} </a>
+        <a href= {item.url}> {item.title} </a>
         </span>
-        <span> {props.item.author}</span>
-        <span> { props.item.num_comments } </span>
-        <span> { props.item.points } </span>
+        <span> {item.author}</span>
+        <span> { item.num_comments } </span>
+        <span> { item.points } </span>
       </li>
-      )
-      };
+
+      );
 
 
 export default App
