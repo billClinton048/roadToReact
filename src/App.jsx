@@ -53,7 +53,9 @@ const [searchTerm, setSearchTerm ] = useStorageState('search', 'react')
   return(
     <div>
     <h1>My Hacker Stories </h1>
-    <Search search = { searchTerm} onSearch = { handleSearch }/>
+    <InputWithLabel id= "search" label= "Search" value= {searchTerm} onInputChange = { handleSearch }>
+    <strong> Search: </strong>
+    </InputWithLabel>
     <hr />
     <List list ={searchedStories} />
 
@@ -62,7 +64,7 @@ const [searchTerm, setSearchTerm ] = useStorageState('search', 'react')
 }
 
 // The search component
-const Search = ( { onSearch , search } ) => {
+const InputWithLabel = ( { id, label, type= "text", value, onInputChange, children} ) => {
 
 // function to hundle the button
   const hundleClick = ()=> {
@@ -71,10 +73,11 @@ const Search = ( { onSearch , search } ) => {
 
   return(
     <>
-      <label htmlFor = "search" > Search: </label>
-    <input id= "search" value= {search} type="text" onChange= { onSearch } />
+      <label htmlFor = {id} >{ children } </label>
+&nbsp;
+    <input id={id} value= { value} type= { type} onChange= { onInputChange } />
 
-    <p> searching for <strong>{ props.searchTerm }</strong> </p>
+    <p> searching for <strong>{}</strong> </p>
     <button type = "button" onClick = {hundleClick}>
     event
     </button>
