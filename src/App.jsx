@@ -64,7 +64,16 @@ const [searchTerm, setSearchTerm ] = useStorageState('search', 'react')
 }
 
 // The search component
-const InputWithLabel = ( { id, label, type= "text", value, onInputChange, children} ) => {
+const InputWithLabel = ( { id, label, type= "text", value, isFocused, onInputChange, children} ) => {
+
+  const inputRef = React.useRef();
+
+React.useEffect (() => {
+if( isFocused && inputRef.current ){
+  inputRef.current.focus()
+
+}
+}, [ isFocused ])
 
 // function to hundle the button
   const hundleClick = ()=> {
@@ -75,7 +84,7 @@ const InputWithLabel = ( { id, label, type= "text", value, onInputChange, childr
     <>
       <label htmlFor = {id} >{ children } </label>
 &nbsp;
-    <input id={id} value= { value} type= { type} onChange= { onInputChange } />
+    <input id={id} value= { value} type= { type} ref = {inputRef} onChange= { onInputChange } />
 
     <p> searching for <strong>{}</strong> </p>
     <button type = "button" onClick = {hundleClick}>
