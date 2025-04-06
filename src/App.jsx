@@ -33,20 +33,11 @@ const useStorageState = ( key, initialState) => {
 return[ value, setValue];
 }
 
-// useState hook
-// const [searchTerm, setSearchTerm ] = React.useState("react")
-
 // using the custom hook
 const [searchTerm, setSearchTerm ] = useStorageState('search', 'react')
 
 
-
-//react useEffect hook
- // React.useEffect(() => {
- //  localStorage.setItem(key , value) }, [value]);
-
-
-// this is a callback function that is used to communcate with the search component
+// this is a callback function
   const handleSearch = (event) => {
     // console.log(event.target.value)
     setSearchTerm(event.target.value)
@@ -71,30 +62,15 @@ const [searchTerm, setSearchTerm ] = useStorageState('search', 'react')
 }
 
 // The search component
-const Search = ( props ) => {
-// props destructing
-  const {search, onSearch } = props;
-
-  // react useStates
-  // const [searchTerm, setSearchTerm] = React.useState('')
+const Search = ( { onSearch , search } ) => {
 
 // function to hundle the button
   const hundleClick = ()=> {
     console.log("button clicked ....")
   }
 
-// function to hundle  react useState
-  const handleChange = (event) => {
-    // console.log(event)
-    // value of the target
-    setSearchTerm(event.target.value)
-    // console.log(event.target.value)
-  }
-
-// sending the prop back to the App component
-// props.onSearch(event)
-
-  re>
+  return(
+    <>
       <label htmlFor = "search" > Search: </label>
     <input id= "search" value= {search} type="text" onChange= { onSearch } />
 
@@ -117,7 +93,7 @@ const List = ( { list } ) =>
       </ul>
 
 // Item component
-const Item = ( { title, url, author, num_comments,points }) => (
+const Item = ( { title, url, author, num_comments, points }) => (
 
    <li>
         <span>
