@@ -23,7 +23,7 @@ objectId: 1,
 ]
 
 // reactive stories
-const [stories, setStories] = React.useState(intialStories);
+const [stories, setStories] = React.useState([]);
 
 // Handler function
 const handleRemoveStory= ( item ) => {
@@ -32,6 +32,17 @@ const handleRemoveStory= ( item ) => {
  setStories(newStories)
 }
 
+// Asychronous
+const getAsyncStories = () =>
+new Promise((resolve) =>
+  setTimeout(()=>resolve({data: {stories: intialStories}}), 2000 )
+  )
+
+React.useEffect(() => {
+getAsyncStories().then(result=> {
+setStories(result.data.stories);
+});
+}, []);
 
 // custom hook
 const useStorageState = ( key, initialState) => {
