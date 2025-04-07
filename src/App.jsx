@@ -2,7 +2,7 @@ import * as React from 'react'
 
 
 const  App = () =>  {
-  const stories = [
+  const intialStories = [
   {
 title: "React",
 url: "https://react.org",
@@ -21,6 +21,16 @@ objectId: 1,
 
   }
 ]
+
+// reactive stories
+const [stories, setStories] = React.useState(intialStories);
+
+// Handler function
+const handleRemoveStory= ( item ) => {
+  const newStories = stories.filter(
+    (story) => item.objectId != story.objectId );
+ setStories(newStories)
+}
 
 
 // custom hook
@@ -57,7 +67,7 @@ const [searchTerm, setSearchTerm ] = useStorageState('search', 'react')
     <strong> Search: </strong>
     </InputWithLabel>
     <hr />
-    <List list ={searchedStories} />
+    <List list ={searchedStories} onRemoveItem = {handleRemoveStory} />
 
     </div>
     )
@@ -95,28 +105,35 @@ if( isFocused && inputRef.current ){
 }
 
 // List component
-const List = ( { list } ) =>
+const List = ( { list, onRemoveItem} ) =>
 
     <ul>
       {
-        list.map(( {objectId, ...item}) => (
-          <Item key= {objectId}  {...item} />
+        list.map((item) => (
+          <Item key= {item.objectId}  item = {item} onRemoveItem= {onRemoveItem} />
         ))}
       </ul>
 
 // Item component
-const Item = ( { title, url, author, num_comments, points }) => (
-
+const Item = ( { item, onRemoveItem}) =>{
+//   const handleRemoveItem = () =>{
+// onRemoveItem(item);
+//   }
+return (
    <li>
         <span>
-        <a href= {url}> {title} </a>
+        <a href= {item.url}> {item.title} </a>
         </span>
-        <span> {author}</span>
-        <span> { num_comments } </span>
-        <span> { points } </span>
+        <span> {item.author}</span>
+        <span> { item.num_comments } </span>
+        <span> { item.points } </span>
+        <span>
+        <button type = 'button' onClick = {() => onRemoveItem(item)} > Dismiss</button>
+        </span>
       </li>
 
       );
+}
 
 
 export default App
