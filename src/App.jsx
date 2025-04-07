@@ -24,6 +24,8 @@ objectId: 1,
 
 // reactive stories
 const [stories, setStories] = React.useState([]);
+const [isLoading, setIsLoading] = React.useState(false)
+const [isError, setIsError] = React.useState(false)
 
 // Handler function
 const handleRemoveStory= ( item ) => {
@@ -39,9 +41,14 @@ new Promise((resolve) =>
   )
 
 React.useEffect(() => {
+setIsLoading(true);
+
 getAsyncStories().then(result=> {
 setStories(result.data.stories);
-});
+setIsLoading(false)
+})
+.catch(() => setIsError(true));
+
 }, []);
 
 // custom hook
@@ -78,7 +85,10 @@ const [searchTerm, setSearchTerm ] = useStorageState('search', 'react')
     <strong> Search: </strong>
     </InputWithLabel>
     <hr />
-    <List list ={searchedStories} onRemoveItem = {handleRemoveStory} />
+    {isError &&  <p> Something went wrong ...</p>}
+    {isLoading ? (<p>Loading ...</p>):
+     (  <List list ={searchedStories} onRemoveItem = {handleRemoveStory} /> )}
+
 
     </div>
     )
