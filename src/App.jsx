@@ -1,6 +1,8 @@
 import * as React from 'react'
 import'./App.css';
 
+// import{ ReactComponent as Check } from './check.svg'
+
 
 const  App = () =>  {
   const intialStories = [
@@ -113,13 +115,13 @@ if( isFocused && inputRef.current ){
 
   return(
     <>
-      <label htmlFor = {id} clssName = "label">{ children } </label>
+      <label htmlFor = {id} className = "label">{ children } </label>
 &nbsp;
     <input id={id} value= { value} type= { type} ref = {inputRef} onChange= { onInputChange } className = "input" />
 
     <p> searching for <strong>{}</strong> </p>
     <button type = "button" onClick = {hundleClick}>
-    Submit
+    <img src="./check.svg" alt="Check icon" width="18" height="18" />
     </button>
     </>)
 
