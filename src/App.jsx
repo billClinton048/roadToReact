@@ -1,5 +1,6 @@
 import * as React from 'react'
 import'./App.css';
+import styled from'styled-components'
 
 // import{ ReactComponent as Check } from './check.svg'
 
@@ -81,9 +82,24 @@ const [searchTerm, setSearchTerm ] = useStorageState('search', 'react')
 
   })
 
+  // styled componets
+const StyledContainer = styled.div`
+height : 100vw;
+padding:20px;
+background: #83a4d4;
+background: linear-gradient(to left, #b6fbff, #83a4d4);
+color: #171212;
+`;
+const StyledHeadlinePrimary = styled.h1`
+font-size: 48px;
+font-weight: 300;
+letter-spacing: 2px;
+`;
+
+
   return(
-    <div className = "container">
-    <h1 className = "headline-primary">My Hacker Stories </h1>
+    <StyledContainer>
+    <StyledHeadlinePrimary>My Hacker Stories</StyledHeadlinePrimary>
     <InputWithLabel id= "search" label= "Search" value= {searchTerm} onInputChange = { handleSearch }>
     <strong> Search: </strong>
     </InputWithLabel>
@@ -92,7 +108,7 @@ const [searchTerm, setSearchTerm ] = useStorageState('search', 'react')
      (  <List list ={searchedStories} onRemoveItem = {handleRemoveStory} /> )}
 
 
-    </div>
+    </StyledContainer>
     )
 }
 
