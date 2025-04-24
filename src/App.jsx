@@ -144,7 +144,7 @@ if( isFocused && inputRef.current ){
 }
 
 // List component
-const List = ( { list, onRemoveItem} ) =>
+const List = ( { list, onRemoveItem } ) =>
 
     <ul>
       {
