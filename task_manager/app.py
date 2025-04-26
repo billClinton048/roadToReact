@@ -36,11 +36,19 @@ def add_task():
 
 # TO UPDATE A TASK
 @app.route('/tasks/<int:task_id>', methods = ['PUT'])
-def mark_task_done(task_id):
+def update_task(task_id):
+	data = request.get_json()
 	for task in tasks:
 		if task["id"] == task_id:
-			task["done"] = True
+			# Update title if provided
+			if "title" in data:
+				task["title"] = data["title"]
+
+			# Update the title
+			if "done" in data:
+				task["done"] = True
 			return jsonify(task)
+
 	return jsonify({"error": "Task not found"}), 404
 
 if __name__ =='__main__':
