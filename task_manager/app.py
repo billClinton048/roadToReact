@@ -1,12 +1,18 @@
+from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from flask import Flask
 
 # App
 app = Flask(__name__)
 CORS(app)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db =SQLAlchemy(app)
+
+class Task(db.Model)
 # Sample data
-task =[
+tasks =[
 {"id": 1, "title": "Buy Milk", "done": False},
 {"id": 2, "title": "Buy Sugar", "done": False},
 {"id": 3, "title": "Relax", "done": False},
@@ -52,13 +58,13 @@ def update_task(task_id):
 	return jsonify({"error": "Task not found"}), 404
 
 # DELETING TASK
-@app.route('/task/<int:task_id', methods = ['DELETE'])
+@app.route('/tasks/<int:task_id>', methods = ['DELETE'])
 def delete_task(task_id):
 	for task in tasks:
 		if task['id'] == task_id:
 			tasks.remove(task)
 			return jsonify({"message": "Task deleted successful"})
-	return jsonify("message": "Task not found"), 404
+	return jsonify({"message": "Task not found"}), 404
 
 
 if __name__ =='__main__':
