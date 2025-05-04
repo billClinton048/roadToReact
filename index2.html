@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uncle Wycliffe's Resiliency Kit</title>
+  <style>
+    :root {
+      --light-bg: #f9f9f9;
+      --light-text: #1a1a1a;
+      --dark-bg: #1a1a1a;
+      --dark-text: #f9f9f9;
+      --accent: #4caf50;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--light-text);
+      transition: all 0.3s ease-in-out;
+    }
+
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+      background-color: var(--accent);
+      color: white;
+    }
+
+    section {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      color: var(--accent);
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background: #eee;
+      color: #333;
+    }
+
+    .dark-mode footer {
+      background: #333;
+      color: #eee;
+    }
+
+    .toggle-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-button" onclick="toggleDarkMode()">Toggle Mode</button>
+  <header>
+    <h1>Uncle Wycliffe’s Resiliency Kit</h1>
+    <p>Tools for thriving through pressure and fear</p>
+  </header>
+
+  <section>
+    <h2>1. Grounding Tools</h2>
+    <ul>
+      <li>Box Breathing (Inhale 4s, Hold 4s, Exhale 4s, Hold 4s)</li>
+      <li>Power Pose (2 minutes of strong posture)</li>
+      <li>Speak Slowly Anchor: Tap finger as you say each word</li>
+      <li>5-4-3-2-1 Senses Countdown</li>
+      <li>Smile intentionally before speaking</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2. Reflect & Reframe</h2>
+    <h3>Journaling Prompts</h3>
+    <ul>
+      <li>What does success mean to me, really?</li>
+      <li>What am I afraid will happen if I fail?</li>
+      <li>What’s one small win from my last public talk?</li>
+      <li>What would I say to encourage a friend in my shoes?</li>
+    </ul>
+    <h3>Reframing Thoughts</h3>
+    <ul>
+      <li>"Success is a journey, not a finish line."</li>
+      <li>"The audience wants me to do well."</li>
+      <li>"I’m allowed to grow out loud."</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>3. Pre-Event Routine</h2>
+    <ul>
+      <li>Night Before: Review notes, affirm yourself, sleep early</li>
+      <li>Morning Of: Power pose, practice 3 minutes aloud, deep breath</li>
+      <li>Pre-Stage: Smile, slow breath, say mantra: "I’ve got this."</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Practice & Progress</h2>
+    <ul>
+      <li>Every Friday: Record a 2-minute talk on any topic</li>
+      <li>Celebrate a win (no matter how small) weekly</li>
+      <li>Ask for feedback once a month</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>5. Support System</h2>
+    <ul>
+      <li>Accountability Buddy: [Name/Contact]</li>
+      <li>Inspiration Video: <a href="#">Watch TED Talk</a></li>
+      <li>Daily Encouragement: “I am not alone in this.”</li>
+    </ul>
+  </section>
+
+  <footer>
+    Made with resilience by Uncle Wycliffe · You are growing stronger every day.
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>
